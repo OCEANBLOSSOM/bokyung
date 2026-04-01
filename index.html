@@ -113,10 +113,30 @@
       overflow: hidden;
     }
 
-    .hero-content {
-      text-align: center;
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5rem;
       padding: 2rem;
       animation: fadeUp 1.2s ease-out;
+    }
+
+    .hero-photo {
+      flex-shrink: 0;
+    }
+
+    .hero-photo img {
+      width: 340px;
+      height: 480px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-content {
+      text-align: left;
     }
 
     .hero-content .subtitle {
@@ -427,6 +447,21 @@
         display: block;
       }
 
+      .hero-inner {
+        flex-direction: column;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-photo img {
+        width: 260px;
+        height: 370px;
+      }
+
       .hero-content h1 {
         font-size: 2.5rem;
       }
@@ -469,11 +504,16 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-content">
-      <p class="subtitle">Violinist</p>
-      <h1>김 보 경</h1>
-      <p class="name-en">Bokyung Kim</p>
-      <p class="tagline">음악으로 이야기하다</p>
+    <div class="hero-inner">
+      <div class="hero-photo">
+        <img src="reference/bokyung kim photo.jpg" alt="바이올리니스트 김보경">
+      </div>
+      <div class="hero-content">
+        <p class="subtitle">Violinist</p>
+        <h1>김 보 경</h1>
+        <p class="name-en">Bokyung Kim</p>
+        <p class="tagline">음악으로 이야기하다</p>
+      </div>
     </div>
     <div class="hero-scroll">
       <span>Scroll</span>
