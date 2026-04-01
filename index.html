@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>김보경 | Violinist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+KR:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #faf8f5;
+      --color-text: #2c2c2c;
+      --color-accent: #8b6914;
+      --color-light: #c9a84c;
+      --color-muted: #7a7570;
+      --color-line: #e0dbd4;
+      --font-en: 'Cormorant Garamond', serif;
+      --font-kr: 'Noto Serif KR', serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-kr);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav.scrolled {
+      border-bottom-color: var(--color-line);
+    }
+
+    nav .logo {
+      font-family: var(--font-en);
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--color-text);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      padding: 2rem;
+      animation: fadeUp 1.2s ease-out;
+    }
+
+    .hero-content .subtitle {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-kr);
+      font-size: 4rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content .name-en {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-content .tagline {
+      font-size: 1rem;
+      font-weight: 200;
+      color: var(--color-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-muted);
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-scroll .line {
+      width: 1px;
+      height: 40px;
+      background: var(--color-line);
+    }
+
+    /* Sections */
+    section {
+      padding: 7rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header .label {
+      font-family: var(--font-en);
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-kr);
+      font-size: 2rem;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+    }
+
+    .section-header .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--color-light);
+      margin: 1.5rem auto 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* About */
+    #about {
+      background: #fff;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 2.2;
+      color: var(--color-text);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Career */
+    .career-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem 2.5rem;
+    }
+
+    .career-section h3 {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .career-section ul {
+      list-style: none;
+    }
+
+    .career-section li {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 2;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .career-section li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.95em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-light);
+    }
+
+    /* Awards */
+    #awards {
+      background: #fff;
+    }
+
+    .awards-list {
+      list-style: none;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .awards-list li {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--color-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .awards-list li:last-child {
+      border-bottom: none;
+    }
+
+    .award-name {
+      flex: 1;
+    }
+
+    .award-detail {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+
+    /* Contact */
+    #contact {
+      background: #2c2c2c;
+      color: #e8e4df;
+      text-align: center;
+    }
+
+    #contact .section-header h2 {
+      color: #e8e4df;
+    }
+
+    #contact .section-header .label {
+      color: var(--color-light);
+    }
+
+    .contact-info {
+      font-weight: 200;
+      font-size: 1rem;
+      line-height: 2.2;
+      color: #b0aaa3;
+    }
+
+    .contact-info a {
+      color: var(--color-light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info a:hover {
+      color: #e8e4df;
+    }
+
+    .social-links {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .social-links a {
+      color: #b0aaa3;
+      transition: color 0.3s, transform 0.3s;
+      display: inline-flex;
+    }
+
+    .social-links a:hover {
+      color: var(--color-light);
+      transform: scale(1.15);
+    }
+
+    /* Footer */
+    footer {
+      background: #242424;
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #666;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      nav .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(250, 248, 245, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      nav .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content .name-en {
+        font-size: 1.1rem;
+      }
+
+      .career-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .awards-list li {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#" class="logo">BOKYUNG KIM</a>
+    <button class="menu-toggle" aria-label="메뉴" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#career">경력</a></li>
+      <li><a href="#awards">수상</a></li>
+      <li><a href="#contact">연락</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="subtitle">Violinist</p>
+      <h1>김 보 경</h1>
+      <p class="name-en">Bokyung Kim</p>
+      <p class="tagline">음악으로 이야기하다</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container reveal">
+      <div class="section-header">
+        <p class="label">About</p>
+        <h2>소개</h2>
+        <div class="divider"></div>
+      </div>
+      <p class="about-text">
+        바이올리니스트 김보경은 선화예술중학교, 서울예술고등학교 관현악과를 거쳐
+        이화여자대학교 관현악과를 졸업하였으며,
+        미국 인디애나 주립대학교(Indiana University)에서
+        Artistic Excellence Fellowship을 수혜하며
+        바이올린 석사 학위를 취득하였습니다.<br><br>
+        배익환, Grigory Kalinovsky, 송재광, 김현미, 민유경, 이선진 선생님을 사사하며
+        깊이 있는 음악 세계를 구축해왔습니다.
+        서울 내셔널 심포니 오케스트라와의 협연(KBS홀),
+        미국 카네기홀 순회 연주, 비엔나 독주회, 금호아트홀 귀국 독주회 등
+        국내외 주요 무대에서 활발한 연주 활동을 이어가고 있으며,
+        바이올린 스튜디오를 운영하며 후학 양성에도 힘쓰고 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- Career -->
+  <section id="career">
+    <div class="container reveal">
+      <div class="section-header">
+        <p class="label">Career</p>
+        <h2>경력</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="career-grid">
+        <div class="career-section">
+          <h3>Education</h3>
+          <ul>
+            <li>선화예술중학교</li>
+            <li>서울예술고등학교 관현악과</li>
+            <li>이화여자대학교 관현악과 학사</li>
+            <li>미국 Indiana University 바이올린 석사<br>(Artistic Excellence Fellowship)</li>
+          </ul>
+        </div>
+        <div class="career-section">
+          <h3>Performance</h3>
+          <ul>
+            <li>금호아트홀 귀국 독주회<br>(2016)</li>
+            <li>미국 카네기홀 외 미국 순회 연주</li>
+            <li>비엔나 독주회</li>
+            <li>서울 내셔널 심포니 오케스트라 협연<br>(KBS홀)</li>
+            <li>선화 실기우수자 연주회<br>(리틀엔젤스 예술회관)</li>
+            <li>KT Chamber Orchestra 정기 연주<br>(2016–2022)</li>
+            <li>이화필하모닉 오케스트라 단원</li>
+            <li>뉴서울 필하모닉 오케스트라 객원 수석</li>
+          </ul>
+        </div>
+        <div class="career-section">
+          <h3>Teaching</h3>
+          <ul>
+            <li>바이올린 스튜디오 운영<br>(2017–2025)</li>
+            <li>사립초등학교 콩쿠르 심사위원</li>
+            <li>언주 초등학교 방과후 바이올린 강사</li>
+            <li>언북 초등학교 방과후 바이올린 강사</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section id="awards">
+    <div class="container reveal">
+      <div class="section-header">
+        <p class="label">Awards</p>
+        <h2>수상 경력</h2>
+        <div class="divider"></div>
+      </div>
+      <ul class="awards-list">
+        <li>
+          <span class="award-name">New York Orchestra Festival</span>
+          <span class="award-detail">Grand Prix</span>
+        </li>
+        <li>
+          <span class="award-name">주간음악세계콩쿨</span>
+          <span class="award-detail">대상</span>
+        </li>
+        <li>
+          <span class="award-name">난파 콩쿨</span>
+          <span class="award-detail">1위</span>
+        </li>
+        <li>
+          <span class="award-name">음악교육신문 콩쿨</span>
+          <span class="award-detail">1위</span>
+        </li>
+        <li>
+          <span class="award-name">한 · 독 Brahms 협회 콩쿨</span>
+          <span class="award-detail">1위</span>
+        </li>
+        <li>
+          <span class="award-name">부천학생음악콩쿨</span>
+          <span class="award-detail">1위</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container reveal">
+      <div class="section-header">
+        <p class="label">Contact</p>
+        <h2>연락처</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="contact-info">
+        <p>공연 문의 및 협업 제안은 아래로 연락해 주세요.</p>
+        <p style="margin-top: 1rem;">
+          <a href="tel:010-7270-3325">010-7270-3325</a>
+        </p>
+        <p>
+          <a href="mailto:boky.k@kakao.com">boky.k@kakao.com</a>
+        </p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/bokyung_kim_violin" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Bokyung Kim. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
