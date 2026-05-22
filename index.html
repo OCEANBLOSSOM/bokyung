@@ -45,6 +45,18 @@
       overflow-x: hidden;
     }
 
+    /* Paper grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.07;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+    }
+
     /* Navigation */
     nav {
       position: fixed;
@@ -132,15 +144,40 @@
 
     .hero-photo {
       flex-shrink: 0;
+      position: relative;
+    }
+
+    .hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid var(--color-light);
+      border-radius: 6px;
+      opacity: 0.3;
+      pointer-events: none;
+      transition: opacity 0.7s ease, inset 0.7s ease;
+    }
+
+    .hero-photo:hover::before {
+      opacity: 0.65;
+      inset: -16px;
     }
 
     .hero-photo img {
+      display: block;
       width: 340px;
       height: 480px;
       object-fit: cover;
       object-position: top center;
       border-radius: 4px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      filter: saturate(0.92) sepia(0.08);
+      transition: filter 0.8s ease, transform 0.8s ease;
+    }
+
+    .hero-photo:hover img {
+      filter: none;
+      transform: scale(1.015);
     }
 
     .hero-content {
@@ -416,6 +453,39 @@
       transform: translateY(0);
     }
 
+    /* Bow-curve section divider */
+    .bow-divider {
+      text-align: center;
+      margin-top: -3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bow-divider svg {
+      display: inline-block;
+      overflow: visible;
+    }
+
+    .bow-divider path.curve {
+      stroke-dasharray: 320;
+      stroke-dashoffset: 320;
+      transition: stroke-dashoffset 1.6s ease-out;
+    }
+
+    .bow-divider .ornament {
+      opacity: 0;
+      transition: opacity 0.5s ease 1s;
+    }
+
+    .bow-divider.visible path.curve {
+      stroke-dashoffset: 0;
+    }
+
+    .bow-divider.visible .ornament {
+      opacity: 1;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       nav {
@@ -488,6 +558,16 @@
         flex-direction: column;
         gap: 0.3rem;
       }
+
+      .bow-divider {
+        margin-top: -2rem;
+        margin-bottom: 2rem;
+      }
+
+      .bow-divider svg {
+        width: 200px;
+        height: 30px;
+      }
     }
   </style>
 </head>
@@ -528,6 +608,12 @@
 
   <!-- About -->
   <section id="about">
+    <div class="bow-divider" aria-hidden="true">
+      <svg viewBox="0 0 280 40" width="280" height="40">
+        <path class="curve" d="M 10 25 C 80 5, 200 5, 270 25" stroke="#c9a84c" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path class="ornament" d="M 140 8 L 144 12 L 140 16 L 136 12 Z" fill="#c9a84c"/>
+      </svg>
+    </div>
     <div class="container reveal">
       <div class="section-header">
         <p class="label">About</p>
@@ -551,6 +637,12 @@
 
   <!-- Career -->
   <section id="career">
+    <div class="bow-divider" aria-hidden="true">
+      <svg viewBox="0 0 280 40" width="280" height="40">
+        <path class="curve" d="M 10 25 C 80 5, 200 5, 270 25" stroke="#c9a84c" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path class="ornament" d="M 140 8 L 144 12 L 140 16 L 136 12 Z" fill="#c9a84c"/>
+      </svg>
+    </div>
     <div class="container reveal">
       <div class="section-header">
         <p class="label">Career</p>
@@ -594,6 +686,12 @@
 
   <!-- Awards -->
   <section id="awards">
+    <div class="bow-divider" aria-hidden="true">
+      <svg viewBox="0 0 280 40" width="280" height="40">
+        <path class="curve" d="M 10 25 C 80 5, 200 5, 270 25" stroke="#c9a84c" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path class="ornament" d="M 140 8 L 144 12 L 140 16 L 136 12 Z" fill="#c9a84c"/>
+      </svg>
+    </div>
     <div class="container reveal">
       <div class="section-header">
         <p class="label">Awards</p>
@@ -630,6 +728,12 @@
 
   <!-- Contact -->
   <section id="contact">
+    <div class="bow-divider" aria-hidden="true">
+      <svg viewBox="0 0 280 40" width="280" height="40">
+        <path class="curve" d="M 10 25 C 80 5, 200 5, 270 25" stroke="#c9a84c" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path class="ornament" d="M 140 8 L 144 12 L 140 16 L 136 12 Z" fill="#c9a84c"/>
+      </svg>
+    </div>
     <div class="container reveal">
       <div class="section-header">
         <p class="label">Contact</p>
@@ -676,7 +780,7 @@
       });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .bow-divider').forEach(el => observer.observe(el));
 
     // Close mobile menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
