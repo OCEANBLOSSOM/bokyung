@@ -1,6 +1,0 @@
-# 배포 제외: 사이트에 필요한 건 index.html과 reference/bokyung kim photo.jpg뿐
-CLAUDE.md
-research/
-pricing reference*/
-reference/*.pdf
-.DS_Store

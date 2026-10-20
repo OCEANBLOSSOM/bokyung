@@ -1,0 +1,4 @@
+# GitHub Pages(Jekyll) 배포 제외 목록. 저장소가 public이라 GitHub에서는 여전히 보임
+exclude:
+  - CLAUDE.md
+  - reference/bokyung kim photo.jpg
