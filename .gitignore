@@ -1,0 +1,5 @@
+# 비공개 자료: 저장소가 public이므로 커밋 금지
+research/
+pricing reference*/
+reference/*.pdf
+.DS_Store
