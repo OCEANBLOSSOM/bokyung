@@ -6,14 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 바이올리니스트 김보경의 개인 브랜딩 프로젝트. 공개 홈페이지(`index.html`)는 정적 단일 파일 사이트로 GitHub Pages에 배포된다.
 
-같은 폴더에 비공개 자료(`research/`, `pricing reference */`, 이력서 PDF)가 있지만 `.gitignore`로 커밋에서 제외된다. 그 작업 지침은 `research/CLAUDE.md`에 있다.
+같은 폴더에 비공개 자료(`research/`, 이력서 PDF)가 있지만 `.gitignore`로 이 저장소에서는 제외된다. `research/`는 자체 git 저장소(private)로 따로 관리되며, 작업 지침은 `research/CLAUDE.md`에 있다.
 
 ## ⚠️ 공개 범위
 
 - 저장소(`OCEANBLOSSOM/bokyung`)는 **public**이다. 커밋된 파일은 GitHub에서 누구나 볼 수 있다
 - 이 CLAUDE.md도 커밋되므로 **가격·리서치 내용을 여기에 쓰지 말 것** — `research/CLAUDE.md`(gitignored)에 쓴다
 - `_config.yml`의 `exclude`로 `CLAUDE.md`와 원본 사진은 Pages 사이트 URL에서 404가 나지만, GitHub 저장소 화면에서는 보인다
-- 커밋 전 `git status`에 `research/`·`pricing reference */`가 잡히지 않는지 확인 (`.gitignore`가 막고 있어야 정상)
+- 커밋 전 `git status`에 `research/`가 잡히지 않는지 확인 (`.gitignore`가 막고 있어야 정상)
 
 ## Commands
 
