@@ -26,7 +26,7 @@ git push origin main               # 배포 (GitHub Pages, 반영까지 1~2분)
 
 ## Architecture
 
-- **index.html**: 전체 사이트. HTML·CSS·JS 전부 인라인 단일 파일 (빌드 스텝·외부 의존성 없음, CDN은 Google Fonts와 gtag.js뿐). 섹션 순서: Hero(프로필 사진 + 이름) → About → Career(Education/Performance/Teaching 3컬럼) → Awards → Contact(전화/이메일/Instagram)
+- **index.html**: 전체 사이트. HTML·CSS·JS 전부 인라인 단일 파일 (빌드 스텝·외부 의존성 없음, CDN은 Google Fonts와 gtag.js뿐). 섹션 순서: Hero(프로필 사진 + 이름) → About → Career(Education/Performance/Teaching 3컬럼) → Awards → Lesson(대상 4종·수업 정보·카카오톡 문의 CTA) → Contact(전화/이메일/Instagram)
 - **reference/**: 프로필 사진. 사이트는 경량화본 `reference/bokyung-kim-profile.jpg`(800×1200, 약 124KB)를 쓴다. 원본 `reference/bokyung kim photo.jpg`(2560×3840, 2.6MB, 파일명에 공백)는 저장소에만 보관하고 Pages 배포에서는 제외. 사진을 교체할 땐 원본에서 `sips -Z 1200 ... --setProperty formatOptions 80`으로 다시 뽑는다
 - **_config.yml**: GitHub Pages(Jekyll) 배포 제외 목록
 - **sitemap.xml**: 서치콘솔·서치어드바이저 제출용. 페이지 내용을 크게 바꾸면 `lastmod` 갱신
@@ -41,7 +41,9 @@ git push origin main               # 배포 (GitHub Pages, 반영까지 1~2분)
 
 - `<head>`: title, description, canonical, `og:*`(카톡 공유 미리보기), `Person` JSON-LD. 모두 절대 URL `https://oceanblossom.github.io/bokyung/` 기준 — **도메인을 바꾸면 canonical·og:url·og:image·JSON-LD url/image·sitemap.xml을 함께 수정**
 - h1은 `김보경` 붙여쓰기 (검색어 매칭용). 화면의 글자 간격은 `letter-spacing: 0.71em` + `margin-right: -0.51em`으로 예전 `김 보 경` 모양과 동일하게 맞춘 것
-- 섹션 레이블(About/Career/Awards/Contact)은 `<h2 class="label">`
+- 섹션 레이블(About/Career/Awards/Lesson/Contact)은 `<h2 class="label">`
+- **Lesson 섹션이 지역·대상 검색어의 출처**: 레슨 지역 동네 이름(현재 송파·강남 2개 구, 잠실·대치 등)과 대상(유아·입시·성인)이 학부모 검색어와 매칭된다. 키워드 나열 금지 — 자연스러운 문장·목록으로만. 실제 출강 가능한 동네만 적을 것
+- 수강료는 홈페이지에 표시하지 않는다 ("상담 후 안내"). 가격은 상담·플랫폼 메시지로만 안내
 - 이력 정보를 바꾸면 meta description·og:description·JSON-LD의 학력·수상도 함께 확인
 
 ## Analytics
@@ -54,7 +56,7 @@ git push origin main               # 배포 (GitHub Pages, 반영까지 1~2분)
 - 폰트: `--font-en`(Cormorant Garamond), `--font-kr`(Noto Serif KR) — Google Fonts CDN
 - 모바일 반응형: 768px 브레이크포인트. 히어로는 세로 배치로 전환, Career 그리드는 1컬럼으로
 - 한글 텍스트에 `word-break: keep-all` 적용 (단어 단위 줄바꿈)
-- 섹션 헤더는 영문 레이블만 사용 (About, Career, Awards, Contact). 반면 **네비게이션 링크는 한글** (소개/경력/수상/연락) — 헤더는 영문, 내비는 한글이 의도된 조합
+- 섹션 헤더는 영문 레이블만 사용 (About, Career, Awards, Lesson, Contact). 반면 **네비게이션 링크는 한글** (소개/경력/수상/레슨/연락) — 헤더는 영문, 내비는 한글이 의도된 조합
 - 스크롤 애니메이션: `.reveal` 클래스 + IntersectionObserver. `.bow-divider`도 동일 observer로 트리거되어 stroke-draw 애니메이션 재생
 - 수상 상세(1위, 대상 등)는 한글 폰트(`--font-kr`) 사용
 - 종이 그레인 텍스처: `body::after`에 SVG `feTurbulence` 노이즈를 fixed 오버레이로, `mix-blend-mode: multiply` opacity 0.07 (라이트 배경에서만 보이고 다크 Contact 섹션에선 사라짐)
